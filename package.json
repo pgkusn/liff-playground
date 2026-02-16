@@ -1,0 +1,27 @@
+{
+  "name": "liff-playground",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"vite\"",
+    "dev:frontend": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "server": "tsx server/index.ts",
+    "server:dev": "tsx watch server/index.ts"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^10.6.0",
+    "@line/liff": "2.27.3",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "vue": "3.5.27"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "6.0.4",
+    "concurrently": "^9.2.1",
+    "tsx": "^4.21.0",
+    "typescript": "5.9.3",
+    "vite": "7.3.1",
+    "vue-tsc": "3.2.4"
+  }
+}
