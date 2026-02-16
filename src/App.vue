@@ -14,10 +14,8 @@ interface Profile {
 }
 const profile = ref<Profile>()
 
-const logout = () => {
-  liff.logout()
-  window.location.reload()
-}
+const imageUrl =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s'
 
 // 顯示目標選擇器（用於選擇群組或好友的畫面），並將開發者所創建的消息發送到選定的目標
 const shareTargetPicker = () => {
@@ -38,7 +36,7 @@ const shareTargetPicker = () => {
             action: {
               type: 'uri',
               label: 'action',
-              uri: 'https://liff.line.me/1657022499-njBkN1k3?auto=yes&type=image&previewUrl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s&downloadUrl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s',
+              uri: `https://liff.line.me/1657022499-njBkN1k3?auto=yes&type=image&previewUrl=${imageUrl}&downloadUrl=${imageUrl}`,
             },
           },
           body: {
@@ -54,7 +52,7 @@ const shareTargetPicker = () => {
                 action: {
                   type: 'uri',
                   label: 'action',
-                  uri: 'https://liff.line.me/1657022499-njBkN1k3?auto=yes&type=image&previewUrl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s&downloadUrl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s',
+                  uri: `https://liff.line.me/1657022499-njBkN1k3?auto=yes&type=image&previewUrl=${imageUrl}&downloadUrl=${imageUrl}`,
                 },
               },
               {
@@ -66,7 +64,7 @@ const shareTargetPicker = () => {
                 action: {
                   type: 'uri',
                   label: 'action',
-                  uri: 'https://liff.line.me/1657022499-njBkN1k3?auto=yes&type=image&previewUrl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s&downloadUrl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s',
+                  uri: `https://liff.line.me/1657022499-njBkN1k3?auto=yes&type=image&previewUrl=${imageUrl}&downloadUrl=${imageUrl}`,
                 },
               },
             ],
@@ -85,7 +83,7 @@ const shareTargetPicker = () => {
                 action: {
                   type: 'uri',
                   label: '查看紅包狀態',
-                  uri: 'https://liff.line.me/1657022499-njBkN1k3?auto=yes&type=image&previewUrl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s&downloadUrl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s',
+                  uri: `https://liff.line.me/1657022499-njBkN1k3?auto=yes&type=image&previewUrl=${imageUrl}&downloadUrl=${imageUrl}`,
                 },
                 margin: 'none',
               },
@@ -105,7 +103,6 @@ const shareTargetPicker = () => {
                         type: 'icon',
                         url: 'https://i.imgur.com/QdZ0eDc.png',
                         margin: 'none',
-                        scaling: true,
                         offsetTop: 'sm',
                       },
                       {
@@ -155,10 +152,8 @@ const sendMessages = () => {
     .sendMessages([
       {
         type: 'image',
-        originalContentUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s',
-        previewImageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46V2OshC7U0lQ-UA0zq59LhomvIXdTQ6rew&s',
+        originalContentUrl: imageUrl,
+        previewImageUrl: imageUrl,
       },
     ])
     .then(() => {
@@ -167,6 +162,11 @@ const sendMessages = () => {
     .catch(err => {
       console.log('error', err)
     })
+}
+
+const logout = () => {
+  liff.logout()
+  window.location.reload()
 }
 
 const initLiff = async () => {
