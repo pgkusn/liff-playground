@@ -29,6 +29,8 @@ app.post('/webhook', line.middleware(middlewareConfig), (req, res) => {
 })
 
 function handleEvent(event: any) {
+  console.log('userId:', event.source?.userId)
+
   if (event.type !== 'message' || event.message.type !== 'text') {
     return Promise.resolve(null)
   }
@@ -202,6 +204,32 @@ function handleEvent(event: any) {
     ],
   })
 }
+
+app.post('/push', async (req: express.Request, res: express.Response) => {
+  try {
+    const userId = req.body.userId
+    const text = req.body.text || '這是一則預設的推播訊息'
+
+    if (!userId) {
+      return res.status(400).json({ error: '必須提供 userId' })
+    }
+
+    await client.pushMessage({
+      to: userId,
+      messages: [
+        {
+          type: 'text',
+          text: text,
+        },
+      ],
+    })
+
+    res.json({ success: true, message: '推播成功！' })
+  } catch (err) {
+    console.error('推播失敗:', err)
+    res.status(500).json({ error: '推播失敗' })
+  }
+})
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
