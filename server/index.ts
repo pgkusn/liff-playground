@@ -5,10 +5,6 @@ import * as line from '@line/bot-sdk'
 const app = express()
 const port = 3000
 
-const middlewareConfig = {
-  channelSecret: process.env.CHANNEL_SECRET!,
-}
-
 const client = new line.messagingApi.MessagingApiClient({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN!,
 })
@@ -19,7 +15,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.post('/webhook', line.middleware(middlewareConfig), (req, res) => {
+app.post('/webhook', (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
     .then(result => res.json(result))
     .catch(err => {
@@ -36,9 +32,14 @@ function handleEvent(event: any) {
   }
 
   // echo back the same message
-  // return client.replyMessage(event.replyToken, {
-  //   type: 'text',
-  //   text: event.message.text,
+  // return client.replyMessage({
+  //   replyToken: event.replyToken,
+  //   messages: [
+  //     {
+  //       type: 'text',
+  //       text: event.message.text,
+  //     },
+  //   ],
   // })
 
   // flex message
