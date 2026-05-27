@@ -210,6 +210,12 @@ initLiff()
       <button @click="shareTargetPicker">shareTargetPicker</button>
       <button @click="sendMessages">sendMessages</button>
     </template>
+
+    <video width="400" autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/Html/mov_bbb.mp4" type="video/mp4" />
+      <source src="https://www.w3schools.com/Html/mov_bbb.ogg" type="video/ogg" />
+      Your browser does not support HTML video.
+    </video>
   </div>
 </template>
 
@@ -228,5 +234,8 @@ initLiff()
   width: 50px;
   height: 50px;
   border-radius: 50%;
+}
+video {
+  margin-top: 1rem;
 }
 </style>
